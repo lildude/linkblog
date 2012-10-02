@@ -358,6 +358,18 @@ class LinkBlog extends Plugin
 			'is_active' => 1,
 			'description' => 'Redirects to the linked item',
 		) );
+		
+		// Cater for the atom feed for comments on links
+		$rules[] = new RewriteRule( array (
+			'name' => 'atom_feed_link_comments', 
+			'parse_regex' => '#^(?P<slug>[^/]+)/atom/comments(?:/page/(?P<page>\d+))?/?$#i', 
+			'build_str' => '{$slug}/atom/comments(/page/{$page})', 
+			'handler' => 'AtomHandler', 
+			'action' => 'entry_comments', 
+			'priority' => 7,
+			'is_active' => 1,
+			'description' => 'Link comments'
+		));
 
 		return $rules;
 	}
