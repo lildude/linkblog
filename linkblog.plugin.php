@@ -186,7 +186,7 @@ class LinkBlog extends Plugin
 	{
 		static $set = false;
 
-		if ( $set == true || !is_object( $theme->matched_rule ) || $theme->matched_rule->action != 'display_post' || $theme->post->content_type != Post::type( 'link' ) ) {
+		if ( $set == true || !is_object( $theme->matched_rule ) || !is_object( $theme->post ) || $theme->matched_rule->action != 'display_post' || $theme->post->content_type != Post::type( 'link' ) ) {
 			return;
 		}
 
